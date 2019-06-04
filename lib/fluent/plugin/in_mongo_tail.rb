@@ -119,8 +119,8 @@ module Fluent::Plugin
 
     def client
       @client_options[:database] = @database if @database
-      @client_options[:user] = @user if @user
-      @client_options[:password] = @password if @password
+      @client_options[:user] = @user unless @user.nil? || @user.empty?
+      @client_options[:password] = @password unless @password.nil? || @password.empty?
       Mongo::Client.new(node_string, @client_options)
     end
 
