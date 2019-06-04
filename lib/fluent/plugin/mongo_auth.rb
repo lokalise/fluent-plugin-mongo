@@ -17,11 +17,11 @@ module Fluent
   module MongoAuth
     def authenticate(client)
       begin
-        if [@user, @password, @auth_source].all?
+        if [@user, @password, @auth_source].all? { |prop| !(prop.nil? || prop.empty?) }
           client = client.with(user: @user, password: @password, auth_source: @auth_source)
-        elsif [@user, @password].all?
+        elsif [@user, @password].all? { |prop| !(prop.nil? || prop.empty?) }
           client = client.with(user: @user, password: @password)
-        elsif [@user, @auth_source, @auth_mech].all?
+        elsif [@user, @auth_source, @auth_mech].all? { |prop| !(prop.nil? || prop.empty?) }
           client = client.with(user: @user, auth_source: @auth_source, auth_mech: @auth_mech.to_sym)
         end
       rescue Mongo::Auth::Unauthorized => e
