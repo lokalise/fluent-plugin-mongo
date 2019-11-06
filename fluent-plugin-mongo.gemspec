@@ -19,6 +19,7 @@ Gem::Specification.new do |gem|
 
   gem.add_dependency "fluentd", [">= 0.14.22", "< 2"]
   gem.add_runtime_dependency "mongo", "~> 2.6.0"
+  gem.add_runtime_dependency "bson", "~> 4.5.0"
   gem.add_development_dependency "rake", ">= 0.9.2"
   gem.add_development_dependency "simplecov", ">= 0.5.4"
   gem.add_development_dependency "rr", ">= 1.0.0"
